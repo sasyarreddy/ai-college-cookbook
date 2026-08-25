@@ -1,0 +1,440 @@
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  margin: 0;
+  width: 100%;
+  min-height: 100%;
+}
+
+body {
+  overflow-x: hidden;
+}
+
+/* -------------------------
+   PAGE
+------------------------- */
+
+.cookbook-page {
+  position: relative;
+
+  width: 100vw;
+  min-height: 100vh;
+
+  overflow: hidden;
+
+  background-size: cover;
+  background-position: center;
+  background-repeat: repeat;
+
+  padding: 45px 30px 40px;
+}
+
+/* -------------------------
+   MAIN CONTENT WRAPPER
+------------------------- */
+
+.content-wrapper {
+  position: relative;
+  z-index: 2;
+
+  width: min(1000px, 72vw);
+  margin: 0 auto;
+}
+
+/* -------------------------
+   TITLE
+------------------------- */
+
+.title-banner {
+  width: 82%;
+  margin: 0 auto 52px;
+
+  padding: 28px 28px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background: rgba(255, 255, 255, 0.62);
+
+  border-radius: 22px;
+
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
+}
+
+.title-banner h1 {
+  margin: 0;
+
+  color: #7d171d;
+
+  font-family: Georgia, "Times New Roman", serif;
+  font-style: italic;
+  font-weight: 400;
+
+  font-size: clamp(3rem, 5vw, 5.2rem);
+  line-height: 1;
+  text-align: center;
+}
+
+/* -------------------------
+   PAST RECIPES BUTTON
+------------------------- */
+
+.past-recipes-btn {
+  position: fixed;
+
+  top: 48px;
+  right: 52px;
+
+  width: 145px;
+  height: 145px;
+
+  border: none;
+
+  background: white;
+  color: #7d171d;
+
+  font-family: Georgia, "Times New Roman", serif;
+  font-style: italic;
+  font-size: 1.45rem;
+  line-height: 1.05;
+
+  cursor: pointer;
+
+  z-index: 10;
+
+  clip-path: polygon(
+    50% 0%,
+    61% 10%,
+    76% 6%,
+    84% 19%,
+    99% 25%,
+    91% 41%,
+    100% 53%,
+    89% 66%,
+    91% 82%,
+    74% 87%,
+    64% 100%,
+    50% 91%,
+    35% 100%,
+    26% 86%,
+    9% 82%,
+    11% 65%,
+    0% 53%,
+    9% 40%,
+    1% 26%,
+    18% 19%,
+    25% 5%,
+    40% 10%
+  );
+}
+
+/* -------------------------
+   PANELS
+------------------------- */
+
+.panel-row {
+  display: grid;
+
+  grid-template-columns: 0.48fr 1fr;
+
+  gap: 26px;
+
+  align-items: stretch;
+}
+
+.panel {
+  min-height: 540px;
+
+  padding: 22px 18px;
+
+  background: rgba(255, 255, 255, 0.58);
+
+  border-radius: 22px;
+
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
+}
+
+.panel h2 {
+  margin: 0 0 20px;
+
+  color: #87232a;
+
+  font-family: Georgia, "Times New Roman", serif;
+  font-style: italic;
+  font-weight: 400;
+
+  font-size: 1.65rem;
+
+  text-align: center;
+}
+
+.panel-body {
+  width: 100%;
+  min-height: 440px;
+}
+
+/* -------------------------
+   DECORATIONS
+------------------------- */
+
+.decor {
+  position: absolute;
+
+  z-index: 4;
+
+  object-fit: contain;
+
+  pointer-events: none;
+  user-select: none;
+}
+
+/* -------------------------
+   LEFT SIDE
+------------------------- */
+
+.pretzel {
+  width: 190px;
+
+  top: 46px;
+  left: 95px;
+
+  transform: rotate(-10deg);
+}
+
+.sushi {
+  width: 160px;
+
+  top: 260px;
+  left: 18px;
+
+  transform: rotate(-4deg);
+}
+
+.croissant {
+  width: 210px;
+
+  top: 430px;
+  left: 140px;
+
+  transform: rotate(6deg);
+}
+
+.heart-cookie {
+  width: 190px;
+
+  left: 15px;
+  bottom: 25px;
+
+  transform: rotate(-5deg);
+}
+
+/* -------------------------
+   RIGHT SIDE
+------------------------- */
+
+.red-bow {
+  width: 150px;
+
+  top: 135px;
+  right: 300px;
+
+  z-index: 6;
+
+  transform: rotate(10deg);
+}
+
+.pizza-heart {
+  width: 180px;
+
+  top: 350px;
+  right: 125px;
+
+  transform: rotate(7deg);
+}
+
+.choc-cookie {
+  width: 155px;
+
+  top: 520px;
+  right: 20px;
+
+  transform: rotate(8deg);
+}
+
+.bunny-toast {
+  width: 175px;
+
+  right: 125px;
+  bottom: 35px;
+
+  transform: rotate(-5deg);
+}
+
+.blue-bow {
+  width: 135px;
+
+  top: 40px;
+  right: 10px;
+
+  z-index: 11;
+
+  transform: rotate(12deg);
+}
+
+/* -------------------------
+   OPTIONAL PLACEHOLDER TEXT
+------------------------- */
+
+.placeholder-text {
+  margin-top: 30px;
+
+  color: rgba(95, 58, 60, 0.65);
+
+  font-family: Georgia, "Times New Roman", serif;
+  font-style: italic;
+
+  text-align: center;
+}
+
+/* -------------------------
+   HOVER
+------------------------- */
+
+.past-recipes-btn {
+  transition:
+    transform 0.2s ease,
+    filter 0.2s ease;
+}
+
+.past-recipes-btn:hover {
+  transform: scale(1.05);
+  filter: drop-shadow(0 5px 7px rgba(0, 0, 0, 0.12));
+}
+
+/* -------------------------
+   RESPONSIVE
+------------------------- */
+
+@media (max-width: 1200px) {
+  .content-wrapper {
+    width: 70vw;
+  }
+
+  .pretzel {
+    width: 150px;
+    left: 35px;
+  }
+
+  .croissant {
+    width: 165px;
+    left: 55px;
+  }
+
+  .red-bow {
+    width: 260px;
+    right: 100px;
+  }
+
+  .pizza-heart {
+    width: 145px;
+    right: 50px;
+  }
+
+  .bunny-toast {
+    width: 145px;
+    right: 50px;
+  }
+}
+
+@media (max-width: 900px) {
+  .cookbook-page {
+    min-height: auto;
+    padding-bottom: 100px;
+  }
+
+  .content-wrapper {
+    width: 92%;
+  }
+
+  .title-banner {
+    width: 85%;
+    margin-top: 85px;
+  }
+
+  .panel-row {
+    grid-template-columns: 1fr;
+  }
+
+  .panel {
+    min-height: 400px;
+  }
+
+  .past-recipes-btn {
+    width: 110px;
+    height: 110px;
+
+    top: 18px;
+    right: 18px;
+
+    font-size: 1.1rem;
+  }
+
+  .decor {
+    opacity: 0.65;
+  }
+
+  .pretzel {
+    width: 105px;
+    top: 20px;
+    left: 10px;
+  }
+
+  .blue-bow {
+    width: 80px;
+    top: 12px;
+    right: 70px;
+  }
+
+  .red-bow {
+    width: 180px;
+    top: 145px;
+    right: -20px;
+  }
+
+  .sushi {
+    width: 95px;
+    left: -15px;
+  }
+
+  .croissant {
+    width: 120px;
+    left: -10px;
+    top: 430px;
+  }
+
+  .heart-cookie {
+    width: 110px;
+  }
+
+  .pizza-heart {
+    width: 100px;
+    right: -10px;
+  }
+
+  .choc-cookie {
+    width: 100px;
+    right: -15px;
+  }
+
+  .bunny-toast {
+    width: 110px;
+    right: 5px;
+  }
+}
