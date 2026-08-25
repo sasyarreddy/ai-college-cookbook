@@ -1,3 +1,7 @@
+/* =========================================
+   RESET
+========================================= */
+
 * {
   box-sizing: border-box;
 }
@@ -14,99 +18,150 @@ body {
   overflow-x: hidden;
 }
 
-/* -------------------------
-   PAGE
-------------------------- */
+
+/* =========================================
+   ENTIRE PAGE GRID
+
+   12 columns
+   ┌───┬───┬───────────────────────┬───┬───┐
+   │   decorations   MAIN CONTENT   decor   │
+   └───┴───┴───────────────────────┴───┴───┘
+========================================= */
 
 .cookbook-page {
+  width: 100%;
+  min-height: 100svh;
+
+  display: grid;
+
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  grid-template-rows: repeat(10, minmax(0, 1fr));
+
+  gap: 0;
+
   position: relative;
-
-  width: 100vw;
-  min-height: 100vh;
-
   overflow: hidden;
 
   background-size: cover;
   background-position: center;
   background-repeat: repeat;
 
-  padding: 45px 30px 40px;
+  padding:
+    clamp(1rem, 2vw, 2.5rem)
+    clamp(0.5rem, 1vw, 1.5rem);
 }
 
-/* -------------------------
-   MAIN CONTENT WRAPPER
-------------------------- */
+
+/* =========================================
+   MAIN CONTENT
+
+   This occupies the middle of the page grid.
+========================================= */
 
 .content-wrapper {
-  position: relative;
-  z-index: 2;
+  grid-column: 3 / 13;
+  grid-row: 1 / 11;
 
-  width: min(1000px, 72vw);
-  margin: 0 auto;
+  display: grid;
+
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  grid-template-rows:
+    auto
+    minmax(0, 1fr);
+
+  column-gap: clamp(0.75rem, 1.5vw, 2rem);
+  row-gap: clamp(1rem, 3vh, 3rem);
+
+  width: 100%;
+  min-height: 90svh;
+
+  position: relative;
+
+  z-index: 2;
 }
 
-/* -------------------------
+
+/* =========================================
    TITLE
-------------------------- */
+========================================= */
 
 .title-banner {
-  width: 82%;
-  margin: 0 auto 52px;
+  grid-column: 1 / 11;
+  grid-row: 1;
 
-  padding: 28px 28px;
+  width: 100%;
+
+  align-self: start;
+  justify-self: center;
 
   display: flex;
   justify-content: center;
   align-items: center;
 
+  padding:
+    clamp(1rem, 2vw, 2rem)
+    clamp(1rem, 3vw, 3rem);
+
   background: rgba(255, 255, 255, 0.62);
 
-  border-radius: 22px;
+  border-radius: 1.5rem;
 
-  backdrop-filter: blur(2px);
-  -webkit-backdrop-filter: blur(2px);
+  backdrop-filter: blur(0.15rem);
+  -webkit-backdrop-filter: blur(0.15rem);
 }
 
 .title-banner h1 {
   margin: 0;
 
-  color: #7d171d;
+  color: #861d22;
 
   font-family: Georgia, "Times New Roman", serif;
   font-style: italic;
   font-weight: 400;
 
-  font-size: clamp(3rem, 5vw, 5.2rem);
+  font-size: clamp(2.4rem, 5vw, 5.5rem);
   line-height: 1;
+
   text-align: center;
+  white-space: nowrap;
 }
 
-/* -------------------------
+
+/* =========================================
    PAST RECIPES BUTTON
-------------------------- */
+
+   This has its own columns beside the title.
+========================================= */
 
 .past-recipes-btn {
-  position: fixed;
+  grid-column: 11 / 13;
+  grid-row: 1;
 
-  top: 48px;
-  right: 52px;
+  align-self: center;
+  justify-self: center;
 
-  width: 145px;
-  height: 145px;
+  width: 75%;
+  aspect-ratio: 1 / 1;
 
   border: none;
 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
   background: white;
-  color: #7d171d;
+
+  color: #861d22;
 
   font-family: Georgia, "Times New Roman", serif;
   font-style: italic;
-  font-size: 1.45rem;
+  font-size: clamp(0.8rem, 1.4vw, 1.5rem);
   line-height: 1.05;
+  text-align: center;
 
   cursor: pointer;
 
-  z-index: 10;
+  z-index: 6;
 
   clip-path: polygon(
     50% 0%,
@@ -132,182 +187,7 @@ body {
     25% 5%,
     40% 10%
   );
-}
 
-/* -------------------------
-   PANELS
-------------------------- */
-
-.panel-row {
-  display: grid;
-
-  grid-template-columns: 0.48fr 1fr;
-
-  gap: 26px;
-
-  align-items: stretch;
-}
-
-.panel {
-  min-height: 540px;
-
-  padding: 22px 18px;
-
-  background: rgba(255, 255, 255, 0.58);
-
-  border-radius: 22px;
-
-  backdrop-filter: blur(2px);
-  -webkit-backdrop-filter: blur(2px);
-}
-
-.panel h2 {
-  margin: 0 0 20px;
-
-  color: #87232a;
-
-  font-family: Georgia, "Times New Roman", serif;
-  font-style: italic;
-  font-weight: 400;
-
-  font-size: 1.65rem;
-
-  text-align: center;
-}
-
-.panel-body {
-  width: 100%;
-  min-height: 440px;
-}
-
-/* -------------------------
-   DECORATIONS
-------------------------- */
-
-.decor {
-  position: absolute;
-
-  z-index: 4;
-
-  object-fit: contain;
-
-  pointer-events: none;
-  user-select: none;
-}
-
-/* -------------------------
-   LEFT SIDE
-------------------------- */
-
-.pretzel {
-  width: 190px;
-
-  top: 46px;
-  left: 95px;
-
-  transform: rotate(-10deg);
-}
-
-.sushi {
-  width: 160px;
-
-  top: 260px;
-  left: 18px;
-
-  transform: rotate(-4deg);
-}
-
-.croissant {
-  width: 210px;
-
-  top: 430px;
-  left: 140px;
-
-  transform: rotate(6deg);
-}
-
-.heart-cookie {
-  width: 190px;
-
-  left: 15px;
-  bottom: 25px;
-
-  transform: rotate(-5deg);
-}
-
-/* -------------------------
-   RIGHT SIDE
-------------------------- */
-
-.red-bow {
-  width: 150px;
-
-  top: 135px;
-  right: 300px;
-
-  z-index: 6;
-
-  transform: rotate(10deg);
-}
-
-.pizza-heart {
-  width: 180px;
-
-  top: 350px;
-  right: 125px;
-
-  transform: rotate(7deg);
-}
-
-.choc-cookie {
-  width: 155px;
-
-  top: 520px;
-  right: 20px;
-
-  transform: rotate(8deg);
-}
-
-.bunny-toast {
-  width: 175px;
-
-  right: 125px;
-  bottom: 35px;
-
-  transform: rotate(-5deg);
-}
-
-.blue-bow {
-  width: 135px;
-
-  top: 40px;
-  right: 10px;
-
-  z-index: 11;
-
-  transform: rotate(12deg);
-}
-
-/* -------------------------
-   OPTIONAL PLACEHOLDER TEXT
-------------------------- */
-
-.placeholder-text {
-  margin-top: 30px;
-
-  color: rgba(95, 58, 60, 0.65);
-
-  font-family: Georgia, "Times New Roman", serif;
-  font-style: italic;
-
-  text-align: center;
-}
-
-/* -------------------------
-   HOVER
-------------------------- */
-
-.past-recipes-btn {
   transition:
     transform 0.2s ease,
     filter 0.2s ease;
@@ -315,126 +195,464 @@ body {
 
 .past-recipes-btn:hover {
   transform: scale(1.05);
-  filter: drop-shadow(0 5px 7px rgba(0, 0, 0, 0.12));
+
+  filter: drop-shadow(
+    0 0.4rem 0.5rem rgba(0, 0, 0, 0.15)
+  );
 }
 
-/* -------------------------
-   RESPONSIVE
-------------------------- */
 
-@media (max-width: 1200px) {
-  .content-wrapper {
-    width: 70vw;
-  }
+/* =========================================
+   MAIN PANEL ROW
+========================================= */
 
-  .pretzel {
-    width: 150px;
-    left: 35px;
-  }
+.panel-row {
+  grid-column: 1 / 11;
+  grid-row: 2;
 
-  .croissant {
-    width: 165px;
-    left: 55px;
-  }
+  display: grid;
 
-  .red-bow {
-    width: 260px;
-    right: 100px;
-  }
+  grid-template-columns:
+    minmax(0, 1fr)
+    minmax(0, 2.2fr);
 
-  .pizza-heart {
-    width: 145px;
-    right: 50px;
-  }
+  gap: clamp(1rem, 2vw, 2rem);
 
-  .bunny-toast {
-    width: 145px;
-    right: 50px;
-  }
+  width: 100%;
+  height: 100%;
+
+  align-items: stretch;
 }
+
+
+/* =========================================
+   PANELS
+========================================= */
+
+.panel {
+  width: 100%;
+  height: 100%;
+
+  min-width: 0;
+  min-height: 0;
+
+  padding:
+    clamp(1rem, 1.5vw, 1.75rem);
+
+  background: rgba(255, 255, 255, 0.58);
+
+  border-radius: 1.5rem;
+
+  backdrop-filter: blur(0.15rem);
+  -webkit-backdrop-filter: blur(0.15rem);
+
+  display: flex;
+  flex-direction: column;
+}
+
+.panel h2 {
+  margin:
+    0
+    0
+    clamp(1rem, 2vh, 1.5rem);
+
+  color: #87232a;
+
+  font-family: Georgia, "Times New Roman", serif;
+  font-style: italic;
+  font-weight: 400;
+
+  font-size: clamp(1.2rem, 1.8vw, 1.8rem);
+
+  text-align: center;
+}
+
+.panel-body {
+  flex: 1;
+
+  width: 100%;
+  min-height: 0;
+}
+
+
+/* =========================================
+   INGREDIENT TEXTBOX
+========================================= */
+
+.ingredients-body {
+  display: flex;
+}
+
+.ingredients-textbox {
+  width: 100%;
+  height: 100%;
+
+  resize: none;
+
+  padding:
+    clamp(1rem, 1.5vw, 1.5rem);
+
+  border: none;
+  outline: none;
+
+  border-radius: 1rem;
+
+  background: rgba(255, 255, 255, 0.45);
+
+  color: #792329;
+
+  font-family: Georgia, "Times New Roman", serif;
+
+  font-size: clamp(0.9rem, 1.2vw, 1.2rem);
+  line-height: 2;
+
+  box-shadow:
+    inset 0 0 0 0.05rem rgba(255, 255, 255, 0.6);
+}
+
+.ingredients-textbox::placeholder {
+  color: rgba(121, 35, 41, 0.5);
+}
+
+.ingredients-textbox:focus {
+  background: rgba(255, 255, 255, 0.65);
+}
+
+
+/* =========================================
+   DECORATION GENERAL
+
+   NO absolute positioning.
+   Every image lives on the page grid.
+========================================= */
+
+.decor {
+  width: 100%;
+  max-height: 100%;
+
+  object-fit: contain;
+
+  align-self: center;
+  justify-self: center;
+
+  pointer-events: none;
+  user-select: none;
+
+  z-index: 4;
+}
+
+
+/* =========================================
+   LEFT DECORATIONS
+========================================= */
+
+/* Top left pretzel */
+.pretzel {
+  grid-column: 1 / 3;
+  grid-row: 1 / 3;
+
+  width: 65%;
+
+  transform: rotate(-8deg);
+}
+
+
+/* Sushi */
+.sushi {
+  grid-column: 1 / 2;
+  grid-row: 4 / 6;
+
+  width: 100%;
+
+  justify-self: start;
+
+  transform: rotate(-3deg);
+}
+
+
+/* Croissant */
+.croissant {
+  grid-column: 1 / 4;
+  grid-row: 6 / 9;
+
+  width: 85%;
+
+  justify-self: start;
+
+  transform: rotate(5deg);
+}
+
+
+/* Heart jam cookie */
+.heart-cookie {
+  grid-column: 1 / 3;
+  grid-row: 9 / 11;
+
+  width: 75%;
+
+  justify-self: start;
+
+  transform: rotate(-4deg);
+}
+
+
+/* =========================================
+   RIGHT DECORATIONS
+========================================= */
+
+/* Large red bow */
+.red-bow {
+  grid-column: 9 / 12;
+  grid-row: 2 / 4;
+
+  width: 90%;
+
+  justify-self: end;
+  align-self: start;
+
+  transform: rotate(8deg);
+
+  z-index: 5;
+}
+
+
+/* Pizza */
+.pizza-heart {
+  grid-column: 11 / 13;
+  grid-row: 4 / 6;
+
+  width: 78%;
+
+  justify-self: end;
+
+  transform: rotate(5deg);
+}
+
+
+/* Cookie */
+.choc-cookie {
+  grid-column: 11 / 13;
+  grid-row: 6 / 8;
+
+  width: 70%;
+
+  justify-self: end;
+
+  transform: rotate(6deg);
+}
+
+
+/* Bunny toast */
+.bunny-toast {
+  grid-column: 11 / 13;
+  grid-row: 8 / 10;
+
+  width: 68%;
+
+  justify-self: center;
+
+  transform: rotate(-4deg);
+}
+
+
+/* Blue bow */
+.blue-bow {
+  grid-column: 11 / 13;
+  grid-row: 1 / 2;
+
+  width: 62%;
+
+  justify-self: end;
+  align-self: start;
+
+  transform: rotate(8deg);
+
+  z-index: 7;
+}
+
+
+/* =========================================
+   TABLET
+========================================= */
 
 @media (max-width: 900px) {
+
   .cookbook-page {
-    min-height: auto;
-    padding-bottom: 100px;
+    grid-template-columns:
+      repeat(8, minmax(0, 1fr));
+
+    grid-template-rows:
+      repeat(12, minmax(0, 1fr));
+
+    min-height: 120svh;
   }
+
 
   .content-wrapper {
-    width: 92%;
+    grid-column: 2 / 8;
+    grid-row: 1 / 13;
+
+    grid-template-columns:
+      repeat(8, minmax(0, 1fr));
   }
+
 
   .title-banner {
-    width: 85%;
-    margin-top: 85px;
+    grid-column: 1 / 7;
   }
 
-  .panel-row {
-    grid-template-columns: 1fr;
-  }
-
-  .panel {
-    min-height: 400px;
-  }
 
   .past-recipes-btn {
-    width: 110px;
-    height: 110px;
+    grid-column: 7 / 9;
 
-    top: 18px;
-    right: 18px;
-
-    font-size: 1.1rem;
+    width: 90%;
   }
 
-  .decor {
-    opacity: 0.65;
+
+  .panel-row {
+    grid-column: 1 / 9;
+
+    grid-template-columns: 1fr;
+    grid-template-rows:
+      minmax(0, 0.8fr)
+      minmax(0, 1.5fr);
   }
+
 
   .pretzel {
-    width: 105px;
-    top: 20px;
-    left: 10px;
+    grid-column: 1 / 2;
+    grid-row: 1 / 3;
   }
 
-  .blue-bow {
-    width: 80px;
-    top: 12px;
-    right: 70px;
-  }
-
-  .red-bow {
-    width: 180px;
-    top: 145px;
-    right: -20px;
-  }
 
   .sushi {
-    width: 95px;
-    left: -15px;
+    grid-column: 1 / 2;
+    grid-row: 4 / 6;
   }
+
 
   .croissant {
-    width: 120px;
-    left: -10px;
-    top: 430px;
+    grid-column: 1 / 2;
+    grid-row: 7 / 9;
   }
+
 
   .heart-cookie {
-    width: 110px;
+    grid-column: 1 / 2;
+    grid-row: 10 / 12;
   }
+
+
+  .red-bow {
+    grid-column: 7 / 9;
+    grid-row: 2 / 4;
+  }
+
 
   .pizza-heart {
-    width: 100px;
-    right: -10px;
+    grid-column: 8 / 9;
+    grid-row: 5 / 7;
   }
+
 
   .choc-cookie {
-    width: 100px;
-    right: -15px;
+    grid-column: 8 / 9;
+    grid-row: 7 / 9;
   }
 
+
   .bunny-toast {
-    width: 110px;
-    right: 5px;
+    grid-column: 8 / 9;
+    grid-row: 9 / 11;
+  }
+
+
+  .blue-bow {
+    grid-column: 8 / 9;
+    grid-row: 1 / 2;
+  }
+}
+
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 600px) {
+
+  .cookbook-page {
+    display: block;
+
+    min-height: 100svh;
+
+    padding:
+      clamp(1rem, 4vw, 2rem);
+  }
+
+
+  .content-wrapper {
+    display: grid;
+
+    width: 100%;
+    min-height: 100svh;
+
+    grid-template-columns:
+      repeat(4, minmax(0, 1fr));
+
+    grid-template-rows:
+      auto
+      auto;
+
+    gap: 1rem;
+  }
+
+
+  .title-banner {
+    grid-column: 1 / 5;
+
+    width: 100%;
+  }
+
+
+  .title-banner h1 {
+    white-space: normal;
+  }
+
+
+  .past-recipes-btn {
+    grid-column: 4 / 5;
+
+    width: 85%;
+
+    justify-self: end;
+
+    margin-top: 0.5rem;
+  }
+
+
+  .panel-row {
+    grid-column: 1 / 5;
+
+    display: grid;
+
+    grid-template-columns: 1fr;
+
+    gap: 1rem;
+  }
+
+
+  .panel {
+    min-height: 50svh;
+  }
+
+
+  /*
+    Decorative images become background-like
+    accents on mobile instead of taking over
+    the layout.
+  */
+
+  .decor {
+    display: none;
   }
 }
