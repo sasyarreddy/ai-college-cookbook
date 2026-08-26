@@ -10,6 +10,7 @@ import heartPizza from "./assets/heart_pizza.png";
 import pretzel from "./assets/pretzel.png";
 import redBow from "./assets/red_gingham_bow.png";
 import sushiRoll from "./assets/sushi_roll.png";
+import star from "./assets/star.svg";
 
 function App() {
   return (
@@ -87,12 +88,24 @@ function App() {
         </header>
 
         {/* PAST RECIPES */}
-        <button className="past-recipes-btn">
-          Past
-          <br />
-          Recipes
+        <button
+          className="past-recipes-btn"
+          aria-label="View past recipes"
+        >
+          <img
+            src={star}
+            alt=""
+            className="button-star"
+          />
+
+          <span className="past-recipes-text">
+            Past
+            <br />
+            Recipes
+          </span>
         </button>
 
+        
         {/* MAIN PANELS */}
         <main className="panel-row">
 
