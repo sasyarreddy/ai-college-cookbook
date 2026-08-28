@@ -187,7 +187,7 @@ function App() {
           <main className="saved-recipe-layout">
             <section className="saved-card saved-name-card">
               <h2>{selectedRecipe.name}</h2>
-              <p>{selectedRecipe.description}</p>
+             
             </section>
 
             <section className="saved-card saved-ingredients-card">
@@ -201,6 +201,8 @@ function App() {
 
             <section className="saved-card saved-instructions-card">
               <h2>Instructions</h2>
+               <p>{selectedRecipe.description}</p>
+
               <ol>
                 {selectedRecipe.instructions.map((instruction, index) => (
                   <li key={`${index}-${instruction}`}>{instruction}</li>
